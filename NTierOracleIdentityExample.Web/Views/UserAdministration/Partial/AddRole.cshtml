@@ -1,0 +1,93 @@
+﻿@model NTierOracleIdentityExample.Web.Models.RoleViewModel
+<script src="~/js/jquery.validate.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.js"></script>
+<script src="~/js/jquery.unobtrusive-ajax.js"></script>
+
+<!-- Add Role Modal -->
+<div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New user</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form asp-action="InsertRole" asp-controller="UserAdministration"
+                      id="newRoleForm" role="form" name="newRoleForm"
+                      data-ajax="true"
+                      data-ajax-method="POST"
+                      data-ajax-begin="OnBegin"
+                      data-ajax-failure="OnFailure"
+                      data-ajax-success="OnSuccess"
+                      data-ajax-complete="OnComplete">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Naziv</label>
+                        <input asp-for="Name" class="form-control input-sm" placeholder="Name" Style="width:100%;" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="modal-footer" style="margin-top:25px; border-top: none;">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+<script type="text/javascript">
+    function OnBegin() {
+        $("#save").prop("disabled", true);
+        $("#save").html('<i id="spinner" class="fa fa-refresh fa-spin" ></i> Snimam...');
+    }
+
+    function OnFailure(response) {
+        $("#save").prop("disabled", false);
+        $("#save").html(' Sačuvaj stavku <span id="search" class="glyphicon floppy-disk"></span>');
+        display_message("Greška", "Desila se greška!", "error", 8000);
+        reloadAddRoleModal();
+    }
+    function OnSuccess(response) {
+        $("#save").prop("disabled", false);
+        $("#save").html(' Sačuvaj stavku <span id="search" class="glyphicon floppy-disk"></span>');
+        if (response.success == true) {
+            display_message("Rola", response.message, "success", 8000);
+        }
+        else {
+            display_message("Rola", response.message, "error", 8000);
+        }
+        reloadAddRoleModal();
+    }
+
+    function OnComplete(response) {
+        console.log(response);
+        $("#save").prop("disabled", false);
+        $("#save").html(' Sačuvaj stavku <span id="search" class="glyphicon floppy-disk"></span>');
+        if (response.responseJSON.success == true) {
+            display_message("Rola", response.responseJSON.message, "success", 8000);
+        }
+        else {
+            display_message("Rola", response.responseJSON.message, "error", 8000);
+        }
+        reloadAddRoleModal();
+    }
+
+    function reloadAddRoleModal() {
+        reloadGrids();
+        $("#addRoleModal").modal('hide');
+        $('#addRole').load('/UserAdministration/GetAddRolePartial');
+    }
+</script>

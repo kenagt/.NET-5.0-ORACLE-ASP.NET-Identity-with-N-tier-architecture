@@ -1,0 +1,135 @@
+﻿
+<script src="~/js/jquery.validate.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.js"></script>
+<script src="~/js/jquery.unobtrusive-ajax.js"></script>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editUserRolesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">User roles</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="editUserRolesForm" role="form" name="editUserRolesForm">
+                    <div class="form-group">
+                        <label class="col-form-label">Id</label>
+                        <input type="text" class="form-control" id="userRoleRecid" name="userRoleRecid" placeholder="Id" readonly="readonly" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Korisničko ime</label>
+                        <input type="text" class="form-control" id="editUserRolesName" name="editUserRolesName" placeholder="Username" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">First name</label>
+                        <input type="text" class="form-control" id="editUserRolesFirstName" name="editUserRolesFirstName" placeholder="First name" data-val="true" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Last name</label>
+                        <input type="text" class="form-control" id="editUserRolesLastName" name="editUserRolesLastName" placeholder="Last name" data-val="true" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">Email</label>
+                        <input type="text" class="form-control" id="editUserRolesEmail" name="editUserRolesEmail" placeholder="Email" data-val="true" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label">User roles</label>
+                        @Html.DropDownList("editUserRoles", (SelectList)ViewData["roles"], new
+                        {
+                            @class = "js-example-basic-multiple",
+                            @placeholder = "User roles",
+                            Style = "width:100%;",
+                            multiple = "multiple"
+                        })
+                    </div>
+
+                    <div class="modal-footer" style="margin-top:25px; border-top: none;">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+<script type="text/javascript">
+    $("#editUserRoles").select2({
+        language: "bs",
+        dropdownParent: $("#editUserRolesForm")
+    }).val(null).trigger('change');
+
+    $('#editUserRolesModal').on('hidden.bs.modal', function () {
+        $("form[name='editUserRolesForm']").trigger("reset");
+    })
+
+    function EditUserRoles(e) {
+        $('#userRoleRecid').val(e.data.record.recid);
+        $('#editUserRolesName').val(e.data.record.userName);
+        $('#editUserRolesFirstName').val(e.data.record.firstName);
+        $('#editUserRolesLastName').val(e.data.record.lastName);
+        $('#editUserRolesEmail').val(e.data.record.email);
+        $("#editUserRoles").select2({
+            language: "bs",
+            dropdownParent: $("#editUserRolesForm")
+        }).val(e.data.record.rolesId.split(',')).trigger('change');
+
+        $("#editUserRolesModal").modal('show');
+    }
+
+     $("form[name='editUserRolesForm']").validate({
+        // Specify validation rules
+        rules: {
+            firstName: "required",
+            lastName: "required",
+            email: {
+                required: true,
+                email: true
+            },
+            userName: {
+                required: true,
+            }
+        },
+        submitHandler: function (form) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("EditUserRoles", "UserAdministration")',
+                data: $("#editUserRolesForm").serialize(),
+                success: function (data) {
+                    reloadGrids();
+                    $("#editUserRolesModal").modal('hide');
+                    $("form[name='editUserRolesForm']").trigger("reset");
+                    if (data.success == false) {
+                        display_message("User roles", data.message, "error", 3000);
+                    }
+                    else {
+                        display_message("User roles", data.message, "success", 3000);
+                    }
+                }
+            });
+        }
+    });
+
+    function DeleteUserRole(e) {
+        if (confirm('Do you want to delete user roles?')) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DeleteUserRole", "UserAdministration")',
+                data: { recid: e.data.record.recid },
+                success: function (data) {
+                    reloadUserItemsGrid();
+                }
+            });
+        }
+    }
+</script>

@@ -1,0 +1,110 @@
+﻿@model NTierOracleIdentityExample.Web.Models.ApplicationUserViewModel
+<script src="~/js/jquery.validate.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.js"></script>
+<script src="~/js/jquery.unobtrusive-ajax.js"></script>
+
+<!-- Add User Modal -->
+<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New user</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form asp-action="InsertUser" asp-controller="UserAdministration"
+                      id="newUserForm" role="form" name="newUserForm"
+                      data-ajax="true"
+                      data-ajax-method="POST"
+                      data-ajax-begin="OnBeginAddUser"
+                      data-ajax-failure="OnFailureAddUser"
+                      data-ajax-success="OnSuccessAddUser"
+                      data-ajax-complete="OnCompleteAddUser">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">USername</label>
+                        <input asp-for="UserName" class="form-control input-sm" placeholder="Korisničko ime" Style="width:100%;" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">First name</label>
+                        <input asp-for="FirstName" class="form-control input-sm" placeholder="First name" Style="width:100%;" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Last name</label>
+                        <input asp-for="LastName" class="form-control input-sm" placeholder="Last name" Style="width:100%;" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Email</label>
+                        <input asp-for="Email" class="form-control input-sm" placeholder="Email" Style="width:100%;" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="modal-footer" style="margin-top:25px; border-top: none;">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+<script type="text/javascript">
+    function OnBeginAddUser() {
+        $("#save").prop("disabled", true);
+        $("#save").html('<i id="spinner" class="fa fa-refresh fa-spin" ></i> Snimam...');
+    }
+
+    function OnFailureAddUser(response) {
+        $("#save").prop("disabled", false);
+        $("#save").html(' Save user <span id="search" class="glyphicon floppy-disk"></span>');
+        display_message("Greška", "Desila se greška!", "error", 8000);
+        reloadAddUserModal();
+    }
+    function OnSuccessAddUser(response) {
+        $("#save").prop("disabled", false);
+        $("#save").html(' Save user <span id="search" class="glyphicon floppy-disk"></span>');
+        if (response.success == true) {
+            display_message("User", response.message, "success", 8000);
+        }
+        else {
+            display_message("User", response.message, "error", 8000);
+        }
+        reloadAddUserModal();
+    }
+
+    function OnCompleteAddUser(response) {
+        $("#save").prop("disabled", false);
+        $("#save").html(' Save user <span id="search" class="glyphicon floppy-disk"></span>');
+        if (response.responseJSON.success == true) {
+            display_message("User", response.responseJSON.message, "success", 8000);
+        }
+        else {
+            display_message("User", response.responseJSON.message, "error", 8000);
+        }
+        reloadAddUserModal();
+    }
+
+    function reloadAddUserModal() {
+        reloadGrids();
+        $("#addUserModal").modal('hide');
+        $('#addUser').load('/UserAdministration/GetAddUserPartial');
+    }
+</script>

@@ -1,0 +1,108 @@
+﻿@model NTierOracleIdentityExample.Web.Models.ApplicationUserViewModel
+<script src="~/js/jquery.validate.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.js"></script>
+<script src="~/js/jquery.unobtrusive-ajax.js"></script>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New user</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form asp-action="EditUser" asp-controller="UserAdministration"
+                      id="editUserForm" role="form" name="editUserForm"
+                      data-ajax="true"
+                      data-ajax-method="POST"
+                      data-ajax-begin="OnBeginEditUser"
+                      data-ajax-failure="OnFailureEditUser"
+                      data-ajax-success="OnSuccessEditUser"
+                      data-ajax-complete="OnCompleteEditUser">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Id</label>
+                        <input asp-for="Id" class="form-control input-sm" placeholder="Id" Style="width:100%;" readonly="readonly" />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Username</label>
+                        <input asp-for="UserName" class="form-control input-sm" placeholder="Username" Style="width:100%;" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">First name</label>
+                        <input asp-for="FirstName" class="form-control input-sm" placeholder="First name" Style="width:100%;" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Last name</label>
+                        <input asp-for="LastName" class="form-control input-sm" placeholder="Last name" Style="width:100%;" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Email</label>
+                        <input asp-for="Email" class="form-control input-sm" placeholder="Email" Style="width:100%;" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="modal-footer" style="margin-top:25px; border-top: none;">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+<script type="text/javascript">
+    function OnBeginEditUser() {
+        $("#save").prop("disabled", true);
+        $("#save").html('<i id="spinner" class="fa fa-refresh fa-spin" ></i> Snimam...');
+    }
+
+    function OnFailureEditUser(response) {
+        $("#save").prop("disabled", false);
+        $("#save").html(' Save user <span id="search" class="glyphicon floppy-disk"></span>');
+        display_message("Error", "Error!", "error", 8000);
+        reloadEditUserModal();
+    }
+
+    function OnSuccessEditUser(response) {
+    }
+
+    function OnCompleteEditUser(response) {
+        $("#save").prop("disabled", false);
+        $("#save").html('Save user <span id="search" class="glyphicon floppy-disk"></span>');
+        if (response.responseJSON.success == true) {
+            display_message("User", response.responseJSON.message, "success", 8000);
+        }
+        else {
+            display_message("User", response.responseJSON.message, "error", 8000);
+        }
+        reloadEditUserModal();
+    }
+
+    function reloadEditUserModal() {
+        reloadGrids();
+        $("#editUserModal").modal('hide');
+        $('#editUser').load('/UserAdministration/GetEmptyEditUserPartial');
+    }
+</script>

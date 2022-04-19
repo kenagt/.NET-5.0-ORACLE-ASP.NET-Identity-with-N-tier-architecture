@@ -1,0 +1,186 @@
+﻿@{
+    ViewBag.Title = "User administration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="margin-top:25px">
+    <ul class="nav nav-tabs">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="usersItems-tab" data-bs-toggle="tab" data-bs-target="#userItemsTab" type="button" role="tab" aria-controls="userItemsTab" aria-selected="true">Users</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="roleItems-tab" data-bs-toggle="tab" data-bs-target="#roleItemsTab" type="button" role="tab" aria-controls="roleItemsTab">Roles</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="userRoleItems-tab" data-bs-toggle="tab" data-bs-target="#userRoleItemsTab" type="button" role="tab" aria-controls="userRoleItemsTab">User roles</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="userItemsTab" role="tabpanel" aria-labelledby="userItems-tab" style="text-align: right;">
+            <button type="button" onclick="AddUser()" style="margin-top: 20px;" id="add" class="btn btn-success btn-sm pull-right">Add user <span class="fas fa-user-plus"></span></button>
+            <table id="userItems" style="margin-top: 20px"></table>
+        </div>
+        <div class="tab-pane fade" id="roleItemsTab" role="tabpanel" aria-labelledby="roleItems-tab" style="text-align: right;">
+            <button type="button" onclick="AddRole()" style="margin-top: 20px;" id="add" class="btn btn-success btn-sm pull-right">Add role <span class="fas fa-plus-circle"></span></button>
+            <table id="roleItems" style="margin-top: 20px"></table>
+        </div>
+        <div class="tab-pane fade" id="userRoleItemsTab" role="tabpanel" aria-labelledby="userRoleItems-tab" style="text-align: right;">
+            <table id="userRoleItems" style="margin-top: 20px"></table>
+        </div>
+    </div>
+</div>
+
+<div id="addUser">
+</div>
+<div id="editUser">
+</div>
+<div id="addRole">
+</div>
+<div id="editRole">
+</div>
+
+@await Html.PartialAsync("~/Views/UserAdministration/Partial/EditUserRoles.cshtml")
+
+<script type="text/javascript">
+
+    function reloadGrids() {
+        $("#userItems").grid().clear();
+        $("#userItems").grid().reload();
+        $("#roleItems").grid().clear();
+        $("#roleItems").grid().reload();
+        $("#userRoleItems").grid().clear();
+        $("#userRoleItems").grid().reload();
+    }
+
+    $(function () {
+
+        $(document).ready(function () {
+            $("#userItems").grid({
+                dataKey: "recid",
+                uiLibrary: "bootstrap4",
+                dataSource: '@Html.Raw(@Url.Action("GetUsers", "UserAdministration"))',
+                columns: [
+                    { field: 'recid', title: 'Id', width: 70, resizable: true, align: 'left' },
+                    { field: 'firstName', title: 'First name', width: 30, resizable: true, align: 'left' },
+                    { field: 'lastName', title: 'Last name', width: 30, resizable: true, align: 'left' },
+                    { field: 'userName', title: 'Username', width: 30, resizable: true, align: 'left' },
+                    { field: 'email', title: 'Email', width: 30, resizable: true, align: 'left' },
+                    { title: 'Delete', field: 'DeleteUser', width: 15, type: 'icon', icon: 'fas fa-user-minus', tooltip: 'DeleteUser', events: { 'click': DeleteUser }, align: 'center' },
+                    { title: 'Edit', field: 'EditUser', width: 15, type: 'icon', icon: 'fas fa-user-edit', tooltip: 'EditUser', events: { 'click': EditUser }, align: 'center' }
+                ],
+                pager: { enable: false, limit: 15 }
+            });
+
+            $("#roleItems").grid({
+                dataKey: "recid",
+                uiLibrary: "bootstrap4",
+                dataSource: '@Html.Raw(@Url.Action("GetRoles", "UserAdministration"))',
+                columns: [
+                    { field: 'recid', title: 'Id', width: 50, resizable: true, align: 'left' },
+                    { field: 'name', title: 'Name', width: 30, resizable: true, align: 'left' },
+                    { title: 'Delete', field: 'DeleteRole', width: 15, type: 'icon', icon: 'fas fa-minus-circle', tooltip: 'DeleteRole', events: { 'click': DeleteRole }, align: 'center' },
+                    { title: 'Edit', field: 'EditRole', width: 15, type: 'icon', icon: 'fas fa-edit', tooltip: 'EditRole', events: { 'click': EditRole }, align: 'center' }
+                ],
+                pager: { enable: false, limit: 500 }
+            });
+
+            $("#userRoleItems").grid({
+                dataKey: "recid",
+                uiLibrary: "bootstrap4",
+                dataSource: '@Html.Raw(@Url.Action("GetUserRoles", "UserAdministration"))',
+                columns: [
+                    { field: 'recid', title: 'Id', width: 70, resizable: true, align: 'left' },
+                    { field: 'firstName', title: 'First name', width: 30, resizable: true, align: 'left' },
+                    { field: 'lastName', title: 'Last name', width: 30, resizable: true, align: 'left' },
+                    { field: 'userName', title: 'Username', width: 30, resizable: true, align: 'left' },
+                    { field: 'email', title: 'Email', width: 30, resizable: true, align: 'left' },
+                    { field: 'roles', title: 'Role', width: 30, resizable: true, align: 'left' },
+                    { field: 'rolesId', title: 'Role', width: 30, resizable: true, align: 'left', hidden: true },
+                    { title: 'Edit', field: 'EditUserRoles', width: 15, type: 'icon', icon: 'fas fa-edit', tooltip: 'EditUserRoles', events: { 'click': EditUserRoles }, align: 'center' }
+                ],
+                pager: { enable: false, limit: 500 }
+            });
+        });
+    });
+
+    function AddRole() {
+        $.ajax({
+            url: '@Html.Raw(@Url.Action("GetAddRolePartial", "UserAdministration"))',
+            cache: false,
+            dataType: "html",
+            success: function (data) {
+                $("#editRole").html(null);
+                $("#addRole").html(data);
+                $("#addRoleModal").modal('show');
+            }
+        });
+    }
+
+    function EditRole(e) {
+        $.ajax({
+            url: '@Html.Raw(@Url.Action("GetEditRolePartial", "UserAdministration"))',
+            cache: false,
+            data: { recid: e.data.record.recid },
+            dataType: "html",
+            success: function (data) {
+                $("#addRole").html(null);
+                $("#editRole").html(data);
+                $("#editRoleModal").modal('show');
+            }
+        });
+    }
+
+    function DeleteRole(e) {
+        if (confirm('Do you want to delete role?')) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DeleteRole", "UserAdministration")',
+                data: { recid: e.data.record.recid },
+                success: function (data) {
+                    reloadGrids();
+                }
+            });
+        }
+    }
+
+    function AddUser() {
+        $.ajax({
+            url: '@Html.Raw(@Url.Action("GetAddUserPartial", "UserAdministration"))',
+            cache: false,
+            dataType: "html",
+            success: function (data) {
+                $("#editUser").html(null);
+                $("#addUser").html(data);
+                $("#addUserModal").modal('show');
+            }
+        });
+    }
+
+    function EditUser(e) {
+        $.ajax({
+            url: '@Html.Raw(@Url.Action("GetEditUserPartial", "UserAdministration"))',
+            cache: false,
+            data: { recid: e.data.record.recid },
+            dataType: "html",
+            success: function (data) {
+                $("#addUser").html(null);
+                $("#editUser").html(data);
+                $("#editUserModal").modal('show');
+            }
+        });
+    }
+
+    function DeleteUser(e) {
+        if (confirm('Do you want to delete user?')) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("DeleteUser", "UserAdministration")',
+                data: { recid: e.data.record.recid },
+                success: function (data) {
+                    reloadGrids();
+                }
+            });
+        }
+    }
+</script>
+

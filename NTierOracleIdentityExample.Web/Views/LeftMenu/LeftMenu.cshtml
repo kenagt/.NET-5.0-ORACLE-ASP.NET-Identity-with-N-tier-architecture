@@ -1,0 +1,48 @@
+﻿@using System.Security.Claims
+@{
+    string name = null;
+
+    var nameClaim = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.GivenName));
+    if (nameClaim != null)
+    {
+        name = nameClaim.Value;
+    }
+    else
+    {
+        name = Context.User.Identity.Name;
+    }
+
+    string selectedNavItem = (string)ViewBag.SelectedNavItem;
+    string homeClass = selectedNavItem.Equals("Home") ? "nav-link active" : "nav-link link-dark";
+    string userAdministrationClass = selectedNavItem.Equals("UserAdministration") ? "nav-link active" : "nav-link link-dark";
+}
+
+<nav id="sidebarMenu" class="col-md-4 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-3" style="margin-left: 15px; margin-right: 15px;">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a class="@homeClass" aria-current="page" href="/Home/Index" style="font-size: 17px;">
+                    <span class="fas fa-home" style="margin-right:20px"></span> Home
+                </a>
+            </li>
+        </ul>
+        @if (((System.Security.Claims.ClaimsIdentity)User.Identity).HasClaim(System.Security.Claims.ClaimTypes.Role, "Administrator"))
+        {
+            <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span>Administration</span>
+            </h5>
+            <ul class="nav nav-pills flex-column">
+            
+                    <li class="nav-item">
+                        <a class="@userAdministrationClass" aria-current="page" href="/UserAdministration/Index" style="font-size: 17px;">
+                            <span class="fas fa-users-cog" style="margin-right:20px"></span>User administration
+                        </a>
+                    </li>
+            </ul>
+        }
+        <hr>
+        <div class="center">
+            <strong>@name</strong>
+        </div>
+    </div>
+</nav>

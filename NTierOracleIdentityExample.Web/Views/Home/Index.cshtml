@@ -1,0 +1,39 @@
+﻿@using System.Security.Claims
+@{
+    string name = null;
+
+    var nameClaim = ((ClaimsIdentity)User.Identity).Claims.FirstOrDefault(x => x.Type.Equals(ClaimTypes.GivenName));
+    if (nameClaim != null)
+    {
+        name = nameClaim.Value;
+    }
+    else
+    {
+        name = Context.User.Identity.Name;
+    }
+}
+
+<div class="container d-flex h-100" style="margin-top:25px">
+    <div class="row justify-content-center align-self-center">
+        <h5>Dear <b>@name</b>, check out logs.</h5>
+        <table id="logItems" style="margin-top: 20px"></table>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $(document).ready(function () {
+            $("#logItems").grid({
+                dataKey: "recid",
+                uiLibrary: "bootstrap4",
+                dataSource: '@Html.Raw(@Url.Action("GetLog", "Home"))',
+                columns: [
+                    { field: 'recid', title: 'Id', width: 70, resizable: true, align: 'left' },
+                    { field: 'firstName', title: 'Date', width: 30, resizable: true, align: 'left' },
+                    { field: 'lastName', title: 'Value', width: 30, resizable: true, align: 'left' }
+                ],
+                pager: { enable: false, limit: 15 }
+            });            
+        });
+    });    
+</script>

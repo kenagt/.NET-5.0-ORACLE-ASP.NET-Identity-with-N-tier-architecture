@@ -1,0 +1,99 @@
+﻿@model NTierOracleIdentityExample.Web.Models.RoleViewModel
+<script src="~/js/jquery.validate.js"></script>
+<script src="~/js/jquery.validate.unobtrusive.js"></script>
+<script src="~/js/jquery.unobtrusive-ajax.js"></script>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editRoleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit role</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form asp-action="EditRole" asp-controller="UserAdministration"
+                      id="editRoleForm" role="form" name="editRoleForm"
+                      data-ajax="true"
+                      data-ajax-method="POST"
+                      data-ajax-begin="OnBegin"
+                      data-ajax-failure="OnFailure"
+                      data-ajax-success="OnSuccess"
+                      data-ajax-complete="OnComplete">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Id pravila</label>
+                        <input asp-for="Id" class="form-control input-sm" placeholder="Id role" Style="width:100%;" readonly="readonly" />
+                        <span asp-validation-for="Id" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label">Naziv</label>
+                        <input asp-for="Name" class="form-control input-sm" placeholder="Name" Style="width:100%;" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="modal-footer" style="margin-top:25px; border-top: none;">
+                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+<script type="text/javascript">
+    function OnBegin() {
+        $("#save").prop("disabled", true);
+        $("#save").html('<i id="spinner" class="fa fa-refresh fa-spin" ></i> Snimam...');
+    }
+
+    function OnFailure(response) {
+        $("#save").prop("disabled", false);
+        $("#save").html(' Save item <span id="search" class="glyphicon floppy-disk"></span>');
+        display_message("Error", "Error!", "error", 8000);
+        reloadEditModal();
+    }
+
+    function OnSuccess(response) {
+        $("#save").prop("disabled", false);
+        $("#save").html(' Save role <span id="search" class="glyphicon floppy-disk"></span>');
+        if (response.success == true) {
+            display_message("Role", response.message, "success", 8000);
+        }
+        else {
+            display_message("Role", response.message, "error", 8000);
+        }
+        reloadEditModal();
+    }
+
+    function OnComplete(response) {
+        $("#save").prop("disabled", false);
+        $("#save").html(' Save role <span id="search" class="glyphicon floppy-disk"></span>');
+        if (response.responseJSON.success == true) {
+            display_message("Role", response.responseJSON.message, "success", 8000);
+        }
+        else {
+            display_message("Role", response.responseJSON.message, "error", 8000);
+        }
+        reloadEditModal();
+    }
+
+    function reloadEditModal() {
+        reloadGrids();
+        $("#editRoleModal").modal('hide');
+        $('#editRole').load('/UserAdministration/GetEmptyEditRolePartial');
+    }
+</script>
