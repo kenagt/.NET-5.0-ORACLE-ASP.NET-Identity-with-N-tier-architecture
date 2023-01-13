@@ -1,0 +1,65 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = NTierOracleIdentityExample.Web
+build_property.RootNamespace = NTierOracleIdentityExample.Web
+build_property.ProjectDir = C:\Users\begic\Desktop\PROJECTS\.NET\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\NTierOracleIdentityExample.Web\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\begic\Desktop\PROJECTS\.NET\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\NTierOracleIdentityExample.Web
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/LeftMenu/LeftMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVmdE1lbnVcTGVmdE1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/UserAdministration/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckFkbWluaXN0cmF0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/UserAdministration/Partial/AddRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckFkbWluaXN0cmF0aW9uXFBhcnRpYWxcQWRkUm9sZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/UserAdministration/Partial/AddUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckFkbWluaXN0cmF0aW9uXFBhcnRpYWxcQWRkVXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/UserAdministration/Partial/EditRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckFkbWluaXN0cmF0aW9uXFBhcnRpYWxcRWRpdFJvbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/UserAdministration/Partial/EditUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckFkbWluaXN0cmF0aW9uXFBhcnRpYWxcRWRpdFVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/UserAdministration/Partial/EditUserRoles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlckFkbWluaXN0cmF0aW9uXFBhcnRpYWxcRWRpdFVzZXJSb2xlcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/begic/Desktop/PROJECTS/.NET/.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture/NTierOracleIdentityExample.Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

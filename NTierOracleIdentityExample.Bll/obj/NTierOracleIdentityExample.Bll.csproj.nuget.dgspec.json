@@ -1,0 +1,158 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Bll\\NTierOracleIdentityExample.Bll.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Bll\\NTierOracleIdentityExample.Bll.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Bll\\NTierOracleIdentityExample.Bll.csproj",
+        "projectName": "NTierOracleIdentityExample.Bll",
+        "projectPath": "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Bll\\NTierOracleIdentityExample.Bll.csproj",
+        "packagesPath": "C:\\Users\\begic\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Bll\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\begic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj": {
+                "projectPath": "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj",
+        "projectName": "NTierOracleIdentityExample.Dll",
+        "projectPath": "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj",
+        "packagesPath": "C:\\Users\\begic\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Dll\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\begic\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.16, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[5.0.16, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.11, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[5.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.16, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
+            },
+            "Oracle.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.21.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

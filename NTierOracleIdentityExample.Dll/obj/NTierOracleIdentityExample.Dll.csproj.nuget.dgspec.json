@@ -1,32 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ldg594sku\\Desktop\\NTierOracleIdentityExample.Web\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj": {}
+    "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ldg594sku\\Desktop\\NTierOracleIdentityExample.Web\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj": {
+    "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ldg594sku\\Desktop\\NTierOracleIdentityExample.Web\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj",
+        "projectUniqueName": "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj",
         "projectName": "NTierOracleIdentityExample.Dll",
-        "projectPath": "C:\\Users\\ldg594sku\\Desktop\\NTierOracleIdentityExample.Web\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj",
-        "packagesPath": "C:\\Users\\ldg594sku\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ldg594sku\\Desktop\\NTierOracleIdentityExample.Web\\NTierOracleIdentityExample.Dll\\obj\\",
+        "projectPath": "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Dll\\NTierOracleIdentityExample.Dll.csproj",
+        "packagesPath": "C:\\Users\\begic\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\begic\\Desktop\\PROJECTS\\.NET\\.NET-5.0-ORACLE-ASP.NET-Identity-with-N-tier-architecture\\NTierOracleIdentityExample.Dll\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ldg594sku\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\begic\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net7.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -37,8 +37,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -81,7 +81,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -90,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
